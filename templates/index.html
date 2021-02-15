@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <title>しりとり</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
     </head>
     <body>
         <h1>Hello!</h1>
@@ -10,14 +13,14 @@
             <input type="text" name="word" placeholder="Enter">
             <input type="submit" value="Submit">
         </form>
-        <div>
+        <div class="input-show">
             <!--入力を表示-->
             {% if word %}
                 <p>your input was {{word}}</p>
             {% endif %}
         </div>
         <!--結果を表示-->
-        <div>
+        <div class="result-show">
             {% if status == 0 %}
                 <p>word accepted!</p>
             {% elif status == 1 %}
@@ -27,16 +30,18 @@
             {% elif status == 3 %}
                 <p>GAME OVER! your input was duplicated</p>
             {% elif status == 4 %}
-                <p>GAME OVER! your input is not kana</p>
+                <p>Not accpeted! your input must be kana</p>
             {% endif %}
         </div>
 
-        <div>
+        <div class="history">
             <!--これまでの入力-->
             <p>これまでの入力</p>
-            {% for word in word_list %}
-                <p>{{word}}</p>
-            {% endfor %}
+            <p>
+                {% for word in word_list %}
+                    {{word}} <br>
+                {% endfor %}
+            </p>
         </div>
     </body>
 </html>

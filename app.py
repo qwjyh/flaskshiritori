@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from functions.judge import iskatahira
 
 app = Flask(__name__)
@@ -9,6 +9,13 @@ word_list=[]
 def home():
     return render_template("index.html")
 
+# post以外のリクエストで表示する
+@app.route("/index")
+def indexshow():
+    status = None
+    global word_list
+    return render_template("index.html", status=status, word_list=word_list)
+
 @app.route("/index", methods=["POST"])
 def post():
     word = request.form["word"]
@@ -16,8 +23,8 @@ def post():
     # judgement = Judgement()
     status = judger(word=word, word_list=word_list)
     print(status)
-    # ゲームオーバーだったらリセット
-    if status != 0:
+    # ゲームオーバー(言語不一致以外)だったらリセット
+    if status in [1,2,3]:
         word_list = []
     return render_template("index.html", word=word, status=status, word_list=word_list)
 
