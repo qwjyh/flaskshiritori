@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Hello!</h1>
+
+        <!--フォーム-->
+        <form action="/index" method="POST">
+            <input type="text" name="word" placeholder="Enter">
+            <input type="submit" value="Submit">
+        </form>
+        <div>
+            <!--入力を表示-->
+            {% if word %}
+                <p>your input was {{word}}</p>
+            {% endif %}
+        </div>
+        <!--結果を表示-->
+        <div>
+            {% if status == 0 %}
+                <p>word accepted!</p>
+            {% elif status == 1 %}
+                <p>GAME OVER! your input ended with ん or ン</p>
+            {% elif status == 2 %}
+                <p>GAME OVER! your input didn't match</p>
+            {% elif status == 3 %}
+                <p>GAME OVER! your input was duplicated</p>
+            {% elif status == 4 %}
+                <p>GAME OVER! your input is not kana</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <!--これまでの入力-->
+            <p>これまでの入力</p>
+            {% for word in word_list %}
+                <p>{{word}}</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>
