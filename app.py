@@ -26,7 +26,7 @@ def post():
     # ゲームオーバー(言語不一致以外)だったらリセット
     if status in [1,2,3]:
         word_list = []
-    return render_template("index.html", word=word, status=status, word_list=word_list)
+    return render_template("index.html", word=word, status=status, word_list=word_list, number=len(word_list))
 
 def judger(word, word_list):
     # 最後の文字が「ん」「ン」

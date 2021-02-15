@@ -14,10 +14,14 @@
             <input type="submit" value="Submit">
         </form>
         <div class="input-show">
-            <!--入力を表示-->
-            {% if word %}
-                <p>your input was {{word}}</p>
-            {% endif %}
+            <p>
+                <!--入力を表示-->
+                {% if word %}
+                    your input was {{word}}
+                {% endif %}
+                <br>
+                現在：{{number}}語目
+            </p>
         </div>
         <!--結果を表示-->
         <div class="result-show">
